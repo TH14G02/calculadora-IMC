@@ -11,20 +11,11 @@ def index():
 
 # Rota genérica para a calculadora
 @app.route('/<IMC>/<int:a>/<int:b>')
-def oper(IMC: str, a: int, b: int):
-    operations = {
-        'IMC': {'name': 'IMC', 'symbol': '/'}
-    }
-
-    operation_info = operations.get(IMC)
-
-    if not operation_info:
-        return render_template('error.html', error_message="A operação solicitada não foi encontrada.",
-                               status_code=404), 404
+def oper(a: int, b: int):
 
     result = 0
     try:
-        if IMC == 'div':
+            
             if b == 0:
                 return render_template('error.html', error_message="Não é possível dividir por zero.",
                                        status_code=400), 400
@@ -32,34 +23,11 @@ def oper(IMC: str, a: int, b: int):
     except Exception as e:
         return redirect(url_for('index'))
 
-    return render_template('math.html', name=operation_info['name'].upper(),
-                           operation_text=f"{a} {operation_info['symbol']} {b}",
+    return render_template('math.html',
+                           operation_text=f"{a}{b}",
                            result=result)
 
-# Rota de exemplo que redireciona para uma operação padrão usando url_for
-@app.route('/soma/')
-@app.route('/soma')
-def soma():
-    # Redireciona para a rota 'oper' com os parâmetros definidos
-    return redirect(url_for('oper', op='soma', a=10, b=5))
 
-# Rota de exemplo que redireciona para uma operação padrão usando url_for
-@app.route('/subtracao')
-def subtracao():
-    # Redireciona para a rota 'oper' com os parâmetros definidos
-    return redirect(url_for('oper', op='sub', a=10, b=5))
-
-# Rota de exemplo que redireciona para uma operação padrão usando url_for
-@app.route('/multiplicacao')
-def multiplicacao():
-    # Redireciona para a rota 'oper' com os parâmetros definidos
-    return redirect(url_for('oper', op='mul', a=10, b=5), 302)
-
-# Rota de exemplo que redireciona para uma operação padrão usando url_for
-@app.route('/divisao')
-def divisao():
-    # Redireciona para a rota 'oper' com os parâmetros definidos
-    return redirect(url_for('oper', op='div', a=10, b=5), 302)
 
 
 if __name__ == '__main__':
