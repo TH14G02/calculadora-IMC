@@ -10,22 +10,19 @@ def index():
     return render_template('index.html')
 
 # Rota genérica para a calculadora
-@app.route('/<IMC>/<int:a>/<int:b>')
+@app.route('/<int:a>/<int:b>')
 def oper(a: int, b: int):
 
     result = 0
     try:
-            
             if b == 0:
                 return render_template('error.html', error_message="Não é possível dividir por zero.",
                                        status_code=400), 400
-            result = a / b
+            result = a / ((b/100) ** 2)
     except Exception as e:
         return redirect(url_for('index'))
 
-    return render_template('math.html',
-                           operation_text=f"{a}{b}",
-                           result=result)
+    return render_template('math.html',name = f"resultado de {a} / {b}",result=f"{result:.2f}")
 
 
 
