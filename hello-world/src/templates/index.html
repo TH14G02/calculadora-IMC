@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Bem-estar & Fitness</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+</head>
+<body>
+    <header>
+        <h1>Portal Saúde & Fitness</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Início</a>
+            <a href="#">Perfil</a>
+        </nav>
+    </header>
+    <main>
+        <div class="banner">
+            <img src="https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pessoa levantando peso">
+            <img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pessoa se exercitando">
+        </div>
+        <h2>Bem-vindo ao seu espaço de bem-estar</h2>
+        <p>Explore ferramentas para melhorar sua saúde física e mental.</p>
+
+        <div class="calculator">
+            <h2>Calculadora de IMC seila </h2>
+            <form id="calc-form" action="">
+                <input type="number" id="a" placeholder="Peso(Ex: 69Kg)" required step="any">
+                <input type="number" id="b" placeholder="Altura (Ex: 1.69)" required step="any">
+                <button type="submit">Calcular</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        &copy; 2024 Saúde & Fitness
+    </footer>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
